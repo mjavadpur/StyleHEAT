@@ -1,3 +1,6 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mjavadpur/styleheat/blob/main/quick_demo.ipynb)
+
+
 # StyleHEAT: One-Shot High-Resolution Editable Talking Face Generation via Pretrained StyleGAN (ECCV 2022)
 
 [paper](https://arxiv.org/pdf/2203.04036.pdf) | [project website](https://FeiiYin.github.io/StyleHEAT/)
