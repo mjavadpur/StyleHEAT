@@ -198,7 +198,7 @@ def align_frames(img_dir, save_dir, output_size=1024, transform_size=1024, optic
     os.makedirs(save_dir, exist_ok=True)
 
     # load face landmark detector
-    fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False, device='cuda')
+    fa = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D, flip_input=False, device='cuda')
 
     # list images in the directory
     img_list = glob.glob1(img_dir, 'frame*')

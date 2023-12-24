@@ -89,10 +89,10 @@ def audio_reenactment(generator, data, audio_path):
     import warnings
     warnings.filterwarnings("ignore")
 
-    current_root_path = os.path.abspath('./third_part/SadTalker/')
-    checkpoint_dir = './checkpoints/'
+    current_root_path = os.path.abspath('/content/StyleHEAT/third_part/SadTalker/')
+    checkpoint_dir = '/content/StyleHEAT/checkpoints/'
     device = 'cuda'
-    temp_root = './docs/demo/output/temp/'
+    temp_root = '/content/StyleHEAT/docs/demo/output/temp/'
     os.makedirs(temp_root, exist_ok=True)
 
     wav2lip_checkpoint = os.path.join(current_root_path, checkpoint_dir, 'wav2lip.pth')

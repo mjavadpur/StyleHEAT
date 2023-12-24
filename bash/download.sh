@@ -24,12 +24,13 @@ unzip ./checkpoints/videos.zip -d ./checkpoints/
 rm -rf ./checkpoints/__MACOSX
 rm ./checkpoints/videos.zip
 
-rm -rf docs/demo/videos/
-rm -rf docs/demo/audios/
-mkdir docs/demo/videos/
-mkdir docs/demo/audios/
-mv ./checkpoints/videos/audios/* docs/demo/audios/
+rm -rf /content/StyleHEAT/docs/demo/videos/
+rm -rf /content/StyleHEAT/docs/demo/audios/
+mkdir /content/StyleHEAT/docs/demo/
+mkdir /content/StyleHEAT/docs/demo/videos/
+mkdir /content/StyleHEAT/docs/demo/audios/
+mv ./checkpoints/videos/audios/* /content/StyleHEAT/docs/demo/audios/
 rm -rf ./checkpoints/videos/audios/
-mv ./checkpoints/videos/* docs/demo/videos/
+mv ./checkpoints/videos/* /content/StyleHEAT/docs/demo/videos/
 
 # pip install -i https://mirrors.cloud.tencent.com/pypi/simple pydub==0.25.1 yacs==0.1.8 librosa==0.6.0 numba==0.48.0 resampy==0.3.1 imageio-ffmpeg==0.4.7

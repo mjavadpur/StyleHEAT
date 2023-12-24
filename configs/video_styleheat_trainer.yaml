@@ -50,7 +50,7 @@ model:
     type: models.styleheat.styleheat::StyleHEAT
     mode: train_visual_refine
     enable_audio: False
-    visual_warper_path: ./checkpoints/video_warper.pth
+    visual_warper_path: /content/StyleHEAT/checkpoints/video_warper.pth
     path:
     optimized_param: calibrator,video_warper
     from_scratch_param: calibrator
