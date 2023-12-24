@@ -1,0 +1,12 @@
+# Mobile Tools for Java (J2ME)
+#.mtj.tmp/
+
+# Package Files #
+*.mp4
+checkpoints/
+BFM/
+__pycache__
+__MACOSX
+*.zip
+docs/demo/
+third_part/SadTalker/
