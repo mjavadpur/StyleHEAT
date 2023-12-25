@@ -23,6 +23,7 @@ def write2video(results_dir, *video_list):
         video_numpy = video_numpy.astype(np.uint8)
         cat_video = np.concatenate([cat_video, video_numpy], 2) if cat_video is not None else video_numpy
 
+    print(".....................strat write2video2")
     image_array = []
     for i in range(cat_video.shape[0]):
         image_array.append(cat_video[i])
@@ -33,11 +34,13 @@ def write2video(results_dir, *video_list):
         out_name = results_dir + '.mp4'
 
 
+    print(".....................strat write2video3")
     _, height, width, layers = cat_video.shape
     size = (width, height)
     print(f"..................... out_name: {out_name}")
     out = cv2.VideoWriter(out_name, cv2.VideoWriter_fourcc(*'mp4v'), 25, size)
 
+    print(".....................strat write2video4")
     for i in range(len(image_array)):
         out.write(image_array[i][:, :, ::-1])
     out.release()

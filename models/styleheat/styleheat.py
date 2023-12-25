@@ -93,11 +93,13 @@ class StyleHEAT(nn.Module):
             warping_condition=warping_condition,
             inversion_condition=inversion_condition
         )
-        video_warp_img = F.interpolate(video_warp_img, size=(imsize, imsize), mode="bilinear", align_corners=False)
+        # video_warp_img = F.interpolate(video_warp_img, size=(imsize, imsize), mode="bilinear", align_corners=False)
+        video_warp_img = F.interpolate(video_warp_img, size=(imsize, imsize), mode="bilinear", align_corners=True)
 
         # Stage 3: Audio Warping
         if self.enable_audio:
-            video_warp_img_256 = F.interpolate(video_warp_img, size=(256, 256), mode="bilinear", align_corners=False)
+            # video_warp_img_256 = F.interpolate(video_warp_img, size=(256, 256), mode="bilinear", align_corners=False)
+            video_warp_img_256 = F.interpolate(video_warp_img, size=(256, 256), mode="bilinear", align_corners=True)
             flow = self.audio_warper(video_warp_img_256, driven_audio)['flow_field']  # Input: 256*256
             # TODO: trick flow: (B, 2, 64, 64) for inference only
             flow[:, :, :32] = 0
@@ -111,7 +113,8 @@ class StyleHEAT(nn.Module):
                 warping_condition=warping_condition,
                 inversion_condition=inversion_condition
             )
-            audio_warp_img = F.interpolate(audio_warp_img, size=(imsize, imsize), mode="bilinear", align_corners=False)
+            # audio_warp_img = F.interpolate(audio_warp_img, size=(imsize, imsize), mode="bilinear", align_corners=False)
+            audio_warp_img = F.interpolate(audio_warp_img, size=(imsize, imsize), mode="bilinear", align_corners=True)
         else:
             audio_warp_img = None
 
@@ -124,7 +127,8 @@ class StyleHEAT(nn.Module):
             warping_condition=warping_condition,
             inversion_condition=inversion_condition
         )
-        fake = F.interpolate(fake, size=(imsize, imsize), mode="bilinear", align_corners=False)
+        # fake = F.interpolate(fake, size=(imsize, imsize), mode="bilinear", align_corners=False)
+        fake = F.interpolate(fake, size=(imsize, imsize), mode="bilinear", align_corners=True)
         return {
             'fake_image': fake,
             'audio_warp_image': audio_warp_img,

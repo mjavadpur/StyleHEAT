@@ -36,6 +36,7 @@ def reenactment(generator, data):
     
     print(f".....................num_batch: {num_batch}")
     for _i in range(num_batch):
+        print(f".....................num_batch: _i: {_i}")
         target_3dmm = data['target_semantics'][_i * bs:(_i + 1) * bs]
         if len(target_3dmm) == 0 or _i * bs > args.frame_limit:
             break
