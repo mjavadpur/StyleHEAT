@@ -136,7 +136,8 @@ class Trainer(object):
 
         #------ rendering
         # mask
-        mask_face_eye = F.grid_sample(self.deca.uv_face_eye_mask.expand(batch_size,-1,-1,-1), opdict['grid'].detach(), align_corners=False)
+        # mask_face_eye = F.grid_sample(self.deca.uv_face_eye_mask.expand(batch_size,-1,-1,-1), opdict['grid'].detach(), align_corners=False)
+        mask_face_eye = F.grid_sample(self.deca.uv_face_eye_mask.expand(batch_size,-1,-1,-1), opdict['grid'].detach(), align_corners=True)
         
         # images
         predicted_images = opdict['rendered_images']*mask_face_eye*opdict['alpha_images']
@@ -168,7 +169,8 @@ class Trainer(object):
 
         if self.cfg.loss.id > 0.:
             shading_images = self.deca.render.add_SHlight(opdict['normal_images'], codedict['light'].detach())
-            albedo_images = F.grid_sample(opdict['albedo'].detach(), opdict['grid'], align_corners=False)
+            # albedo_images = F.grid_sample(opdict['albedo'].detach(), opdict['grid'], align_corners=False)
+            albedo_images = F.grid_sample(opdict['albedo'].detach(), opdict['grid'], align_corners=True)
             overlay = albedo_images*shading_images*mask_face_eye + images*(1-mask_face_eye)
             losses['identity'] = self.id_loss(overlay, images) * self.cfg.loss.id
         

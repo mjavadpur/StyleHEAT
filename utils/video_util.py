@@ -16,6 +16,7 @@ from skimage import io
 def write2video(results_dir, *video_list):
     cat_video = None
 
+    print(".....................strat write2video")
     for video in video_list:
         video_numpy = video[:, :3, :, :].cpu().float().detach().numpy()
         video_numpy = (np.transpose(video_numpy, (0, 2, 3, 1)) + 1) / 2.0 * 255.0
@@ -34,7 +35,7 @@ def write2video(results_dir, *video_list):
 
     _, height, width, layers = cat_video.shape
     size = (width, height)
-    print("..................... out_name: {out_name}")
+    print(f"..................... out_name: {out_name}")
     out = cv2.VideoWriter(out_name, cv2.VideoWriter_fourcc(*'mp4v'), 25, size)
 
     for i in range(len(image_array)):
