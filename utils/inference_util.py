@@ -26,7 +26,7 @@ def get_intuitive_control():
     control_dict['rotation_left_z'] = torch.tensor([0, math.pi / 8, 0, 0, 0, 0.45])
     control_dict['rotation_right_z'] = torch.tensor([0, -math.pi / 8, 0, 0, 0, 0.45])
 
-    expression = torch.load('./docs/demo/intuitive_edit/expression.pth')
+    expression = torch.load('/content/StyleHEAT/docs/demo/intuitive_edit/expression.pth')
     for item in ['expression_center', 'expression_mouth', 'expression_eyebrow', 'expression_eyes']:
         control_dict[item] = expression[item]
 

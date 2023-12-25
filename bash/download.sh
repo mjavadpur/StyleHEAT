@@ -12,7 +12,8 @@ wget https://github.com/FeiiYin/StyleHEAT/releases/download/styleheat/stylegan2_
 wget https://github.com/FeiiYin/StyleHEAT/releases/download/styleheat/model_ir_se50.pth -O ./checkpoints/model_ir_se50.pth
 wget https://github.com/FeiiYin/StyleHEAT/releases/download/styleheat/StyleHEAT_visual.pt -O ./checkpoints/StyleHEAT_visual.pt
 mkdir ./checkpoints/Deep3D/
-wget https://github.com/FeiiYin/StyleHEAT/releases/download/styleheat/epoch_20.pth -O ./checkpoints/epoch_20.pth
+wget -nc https://github.com/Winfredy/SadTalker/releases/download/v0.0.2/epoch_20.pth -O ./checkpoints/epoch_20.pth
+# wget https://github.com/FeiiYin/StyleHEAT/releases/download/styleheat/epoch_20.pth -O ./checkpoints/epoch_20.pth
 mv checkpoints/epoch_20.pth checkpoints/Deep3D/epoch_20.pth
 wget https://github.com/Winfredy/SadTalker/releases/download/v0.0.1/BFM_Fitting.zip -O ./checkpoints/BFM_Fitting.zip
 unzip ./checkpoints/BFM_Fitting.zip -d ./checkpoints/BFM/

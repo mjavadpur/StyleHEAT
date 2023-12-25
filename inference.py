@@ -78,7 +78,7 @@ def audio_reenactment(generator, data, audio_path):
     # import TODO
     import sys
     import os
-    sys.path.append(os.path.abspath('./third_part/SadTalker/'))
+    sys.path.append(os.path.abspath('/content/StyleHEAT/third_part/SadTalker/'))
     import random
     import numpy as np
     from pydub import AudioSegment 
@@ -287,13 +287,13 @@ def intuitive_edit(generator, data):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Inferencing')
-    parser.add_argument('--config', default='./configs/inference.yaml')
+    parser.add_argument('--config', default='/content/StyleHEAT/configs/inference.yaml')
     parser.add_argument('--name', default='test')
     parser.add_argument('--from_dataset', action='store_true')
     parser.add_argument('--cross_id', action='store_true')
     parser.add_argument('--image_source', type=str, default=None, help='Single path or directory')
     parser.add_argument('--video_source', type=str, default=None, help='Single path or directory')
-    parser.add_argument('--output_dir', default='./')
+    parser.add_argument('--output_dir', default='/content/StyleHEAT/')
     parser.add_argument('--inversion_option', type=str, default='encode', help='load, optimize, encode')
     parser.add_argument('--frame_limit', type=int, default=1000)
     parser.add_argument('--batch_size', type=int, default=10)
