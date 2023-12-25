@@ -170,6 +170,7 @@ class TempVideoDataset:
         data = {}
         self.video_index += 1
 
+        print(f"...........len(self.video_list): {len(self.video_list)}")
         if len(self.video_list) > 0:
             video_path = self.video_list[self.video_index]
 

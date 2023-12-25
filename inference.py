@@ -25,12 +25,16 @@ def reenactment(generator, data):
     """
     bs = args.batch_size
     source_image = data['source_align'].unsqueeze(0).cuda()
+    print("......................Start inference_util.hfgi_inversion")
     inv_data = inference_util.hfgi_inversion(generator, source_image, args=args, batch_size=bs)
+    print("......................End inference_util.hfgi_inversion")
     source_image = source_image.repeat(bs, 1, 1, 1)
     
     num_batch = len(data['target_semantics']) // bs + 1
     gt_images, video_warp_images, audio_warp_images, fake_images = [], [], [], []
     source_3dmm = data['source_semantics'].unsqueeze(-1).repeat(1, 1, 27)  # 1, 73, 27
+    
+    print(f".....................num_batch: {num_batch}")
     for _i in range(num_batch):
         target_3dmm = data['target_semantics'][_i * bs:(_i + 1) * bs]
         if len(target_3dmm) == 0 or _i * bs > args.frame_limit:
@@ -70,7 +74,10 @@ def reenactment(generator, data):
     # gt_images = torch.cat(gt_images, 0)
     # video_warp_images = torch.cat(video_warp_images, 0)
 
+    print("......................Start video_util.write2video")
+    print(f".......................args.output_dir: {args.output_dir}")
     video_util.write2video("{}/{}".format(args.output_dir, data['video_name']), fake_images)
+    print("......................End video_util.write2video")
     print('Save video in {}/{}.mp4'.format(args.output_dir, data['video_name']))
 
 
@@ -315,18 +322,29 @@ def main():
     opt = Config(args.config)
     opt.model.enable_audio = args.enable_audio
     generator = StyleHEAT(opt.model, PRETRAINED_MODELS_PATH).cuda()
+    print("......start inference_util.build_inference_dataset")
     dataset = inference_util.build_inference_dataset(args, opt)
-    
+    print("......End inference_util.build_inference_dataset")
     for _ in tqdm.tqdm(range(len(dataset))):
+        
         data = dataset.load_next_video()
+        print("......End dataset.load_next_video")
         if args.intuitive_edit:
+            print("......Start intuitive_edit(generator, data)")
             intuitive_edit(generator, data)
+            print("......End intuitive_edit(generator, data)")
         elif args.attribute_edit:
+            print("......Start attribute_edit(generator, data)")
             attribute_edit(generator, data)
+            print("......End attribute_edit(generator, data)")
         elif args.audio_path is not None:
+            print("......Start audio_reenactment(generator, data, args.audio_path)")
             audio_reenactment(generator, data, args.audio_path)
+            print("......End audio_reenactment(generator, data, args.audio_path)")
         else:
+            print("......Start reenactment(generator, data)")
             reenactment(generator, data)
+            print("......End reenactment(generator, data)")
 
 
 if __name__ == '__main__':
